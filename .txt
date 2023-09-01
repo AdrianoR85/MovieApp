@@ -1,0 +1,11 @@
+<!-- <div class="card__face card__face--front">
+          <div class="image-container">
+          </div>
+          <div class="content">
+            <h2>Movie name</h2>
+            <span>4.2</span>
+          </div>
+    </div>
+    <div class="card__face card__face--back">
+        <p class="sinopse"></p>
+    </div> -->

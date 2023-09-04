@@ -12,7 +12,6 @@ const ulElement = document.querySelector('.genres__list');
 
 let selectAtive = false
 
-
 const getGenres = async () => {
   const response = await fetch(`${tmdbBaseUrl}/genre/movie/list${requestParams}`);
   const data = await response.json();
@@ -50,17 +49,17 @@ const getMoveByCategory = async (id) => {
 }
 
 const renderMovies = async (id='') => {
-  const moviesList = await getMovies()
-  const moviesCategoryList = await getMoveByCategory(id)
-
   moviesWrapper.innerHTML = ''
+  
   if(selectAtive) {
+    const moviesCategoryList = await getMoveByCategory(id)
     moviesCategoryList.forEach(movie => {
       const newCard = createCard(movie.title, movie.vote_average, movie.poster_path, movie.overview)
       moviesWrapper.appendChild(newCard);
     })
     
   } else {
+    const moviesList = await getMovies()
     moviesList.forEach(movie => {
       const newCard = createCard(movie.title, movie.vote_average, movie.poster_path, movie.overview)
       moviesWrapper.appendChild(newCard);
@@ -117,8 +116,7 @@ function handleCategoryClick() {
   const genres = document.querySelector('.genres');
   genres.classList.toggle('genres--open');
 
-  ulElement.addEventListener('click', async (e) => {
-    const liList = document.querySelectorAll('.genres__list li')
+  ulElement.addEventListener('click', (e) => {
     const categoryID = e.target.id
     if (categoryID !== 'all-movies') {
       renderMovies(categoryID)
@@ -130,6 +128,5 @@ function handleCategoryClick() {
 
   })
 }
+
 btnCategory.addEventListener('click', handleCategoryClick);
-
-
